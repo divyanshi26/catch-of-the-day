@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { formatPrice } from '../helpers'
 
 class Fish extends React.Component {
+	
 	render() {
-		
 		const key = this.props.index;
 		const { details } = this.props;
 		const isAvailable = details.status === 'available';
@@ -22,12 +22,12 @@ class Fish extends React.Component {
 			</li>
 		)
 	}
-}
 
-Fish.propTypes = {
-	index: PropTypes.string.isRequired,
-	details: PropTypes.object.isRequired,
-	addToOrder: PropTypes.func.isRequired
-};
+	static propTypes = {
+		index: PropTypes.string.isRequired,
+		details: PropTypes.object.isRequired,
+		addToOrder: PropTypes.func.isRequired
+	};
+}
 
 export default Fish;

@@ -4,12 +4,8 @@ import PropTypes from 'prop-types';
 import { formatPrice } from '../helpers';
 
 class Order extends React.Component {
-	constructor() {
-		super();
-		this.renderOrder = this.renderOrder.bind(this);
-	}
 
-	renderOrder(key) {
+	renderOrder = (key) => {
 		const fish = this.props.fishes[key];
 		const count = this.props.order[key];
 		const removeButton = <button onClick={() => this.props.removeFromOrder(key)}>&times;</button>
@@ -24,7 +20,7 @@ class Order extends React.Component {
 				<span className="price">{formatPrice(count * fish.price)}</span>
 			</li>
 		);
-	}
+	};
 
 	render() {
 		const orderIds = Object.keys(this.props.order);
@@ -50,12 +46,12 @@ class Order extends React.Component {
 			</div>
 		)
 	}
-}
 
-Order.propTypes = {
-	fishes: PropTypes.object.isRequired,
-	order: PropTypes.object.isRequired,
-	removeFromOrder: PropTypes.func.isRequired,
-};
+	static propTypes = {
+		fishes: PropTypes.object.isRequired,
+		order: PropTypes.object.isRequired,
+		removeFromOrder: PropTypes.func.isRequired,
+	};
+}
 
 export default Order;

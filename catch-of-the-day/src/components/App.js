@@ -9,20 +9,11 @@ import sampleFishes from '../sample-fishes';
 import base from '../base';
 
 class App extends React.Component {
-	constructor()  {
-		super();
-		this.addFish = this.addFish.bind(this);
-		this.updateFish = this.updateFish.bind(this);
-		this.removeFish = this.removeFish.bind(this);
-		this.loadSamples = this.loadSamples.bind(this);
-		this.addToOrder = this.addToOrder.bind(this);
-		this.removeFromOrder = this.removeFromOrder.bind(this);
-		// initial state / getInitialState()
-		this.state = {
-			fishes: {},
-			order: {},
-		};
-	}
+
+	state = {
+		fishes: {},
+		order: {},
+	};
 
 	componentWillMount() {
 		// this runs right before <App> is rendered
@@ -52,7 +43,7 @@ class App extends React.Component {
 		);
 	}
 
-	addFish(fish) {
+	addFish = (fish) => {
 		// take copy of state
 		// this.state.fishes.fish1 = fish;
 		const fishes = {...this.state.fishes};
@@ -61,42 +52,42 @@ class App extends React.Component {
 		fishes[`fish-${timestamp}`] = fish;
 		// set state
 		this.setState({ fishes });
-	}
+	};
 
-	updateFish(key, updatedFish) {
+	updateFish = (key, updatedFish) => {
 		const fishes = {...this.state.fishes};
 		fishes[key] = updatedFish;
 		this.setState({ fishes });
-	}
+	};
 
-	removeFish(key) {
+	removeFish = (key) => {
 		const fishes = {...this.state.fishes}
 		fishes[key] = null;
 		this.setState({ fishes });
-	}
+	};
 
-	loadSamples() {
+	loadSamples = () => {
 		this.setState({
 			fishes: sampleFishes
 		});
-	}
+	};
 
-	addToOrder(key) {
+	addToOrder = (key) => {
 		// take copy of state
 		const order = {...this.state.order};
 		// update or add new number of fish ordered
 		order[key] = order[key] + 1 || 1;
 		// set state
 		this.setState({ order });
-	}
+	};
 
-	removeFromOrder(key) {
+	removeFromOrder = (key) => {
 		const order = {...this.state.order};
 		// order[key] = 0;
 		// can use delete since we're not bound by firebase
 		delete order[key];
 		this.setState({ order });
-	}
+	};
 
 	render() {
 		return (
@@ -128,10 +119,10 @@ class App extends React.Component {
 			</div>
 		)
 	}
-}
 
-App.propTypes = {
-	match: PropTypes.object.isRequired
-};
+	static propTypes = {
+		match: PropTypes.object.isRequired
+	};
+}
 
 export default App;
