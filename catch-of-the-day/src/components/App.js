@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import Header from './Header';
 import Order from './Order';
@@ -122,10 +123,15 @@ class App extends React.Component {
 					removeFish={this.removeFish}
 					loadSamples={this.loadSamples}
 					fishes={this.state.fishes}
+					storeId={this.props.match.params.storeId}
 				/>
 			</div>
 		)
 	}
 }
+
+App.propTypes = {
+	match: PropTypes.object.isRequired
+};
 
 export default App;
